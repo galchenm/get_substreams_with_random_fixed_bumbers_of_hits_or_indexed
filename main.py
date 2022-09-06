@@ -23,7 +23,7 @@ def parse_cmdline_args():
     parser.add_argument('-i','--i', type=str, help="Input stream file")
     parser.add_argument('-o','--o', type=str, help="Ouput stream file")
     parser.add_argument('-f','--f', type=str, help="Input file with list of streams file")
-    parser.add_argument('-n','--n', type=int, help="Fixed number of hits or indexed patterns")
+    parser.add_argument('-n','--n', type=int, default=1, help="Fixed number of hits or indexed patterns")
     parser.add_argument('-hi','--hi', default=False, action="store", help="Use this flag if you want to grep hits")
     parser.add_argument('-ind','--ind', default=False, action="store", help="Use this flag if you want to grep indexed patterns")
     return parser.parse_args()
@@ -177,6 +177,7 @@ if __name__ == "__main__":
     input_list_of_stream = args.f
     required_numbers = args.n
     output_stream = -100000
+    total_number = 0
     if input_list_of_stream is not None:
         path = os.path.dirname(input_list_of_stream)
         with open(input_list_of_stream, 'r') as f:
